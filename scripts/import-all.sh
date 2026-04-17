@@ -6,13 +6,13 @@ ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 DASHBOARDS_DIR="${ROOT_DIR}/dashboards"
 
 for f in \
+  "${DASHBOARDS_DIR}/soc-executive-overview.ndjson" \
+  "${DASHBOARDS_DIR}/soc-active-incidents.ndjson" \
+  "${DASHBOARDS_DIR}/soc-telemetry-health.ndjson" \
   "${DASHBOARDS_DIR}/linux-security-overview.ndjson" \
   "${DASHBOARDS_DIR}/ssh-auth-attacks.ndjson" \
   "${DASHBOARDS_DIR}/file-integrity-monitoring.ndjson" \
-  "${DASHBOARDS_DIR}/asset-inventory.ndjson" \
-  "${DASHBOARDS_DIR}/soc-triage.ndjson" \
-  "${DASHBOARDS_DIR}/threat-detection.ndjson" \
-  "${DASHBOARDS_DIR}/compliance-monitoring.ndjson"
+  "${DASHBOARDS_DIR}/asset-inventory.ndjson"
 do
   "${SCRIPT_DIR}/import-saved-object.sh" "$f"
 done

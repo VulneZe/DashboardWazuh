@@ -1,17 +1,41 @@
-# Wazuh Linux SOC Dashboards for OpenSearch Dashboards
+# Wazuh SOC Dashboards - Architecture Professionnelle
 
-Pack de 7 dashboards OpenSearch Dashboards prêts à importer pour un SOC Linux sous Wazuh :
+Pack de dashboards OpenSearch Dashboards basés sur l'architecture SOC professionnelle Wazuh 4.14.
 
-**Dashboards Linux spécifiques :**
-- Linux Security Overview - Vue Linux avec filtre entreprise (rule.level >= 7)
-- SSH/Auth Attacks - Authentification SSH et attaques
-- File Integrity Monitoring - Surveillance des fichiers
+## Architecture à 3 Niveaux
 
-**Dashboards SOC généraux :**
-- Asset Inventory - Inventaire des actifs à surveiller (machines, OS, niveau de risque)
-- SOC Triage - Triage et priorisation des alertes selon niveau de gravité
-- Threat Detection - Détection de menaces (malware, rootkits, exploits)
-- Compliance Monitoring - Conformité et violations de politiques
+**Niveau 1 - Pack de Pilotage SOC** (tableaux d'ouverture quotidiens)
+- **SOC Executive Overview** - Vue d'ensemble avec KPIs critiques, évolution, top agents, MITRE tactics, severity distribution, incident queue
+- **SOC Active Incidents** - Détection et corrélation : règles actives, IP agressives, comptes ciblés, MITRE heatmap, timeline incidents
+- **SOC Telemetry Health** - État des agents et fiabilité télémétrie : Active/Disconnected/Pending, OS distribution, agents silencieux
+
+**Niveau 2 - Pack d'Investigation** (investigation ciblée)
+- **Linux Security Overview** - Vue Linux avec filtre entreprise (rule.level >= 7)
+- **SSH/Auth Attacks** - Authentification SSH et attaques
+- **File Integrity Monitoring** - Surveillance des fichiers
+- **Asset Inventory** - Inventaire des actifs (machines, OS, niveau de risque)
+
+**Niveau 3 - Déclinaisons par environnement** (à créer selon besoin)
+- ENV-PROD, ENV-DMZ, ENV-AD-Windows, ENV-Linux-Servers, ENV-Workstations
+
+## Charte Visuelle Professionnelle
+
+Palette fixe par sévérité (cohérence sur tous les dashboards) :
+- **Critical** (level >= 10) : `#B42318` (rouge sombre)
+- **High** (level 7-9) : `#F79009` (orange)
+- **Medium** (level 4-6) : `#FEC84B` (ambre)
+- **Low** (level 0-3) : `#12B76A` (vert)
+- **Info** : `#2E90FA` (bleu)
+- **Unknown/No data** : `#667085` (gris)
+
+## Structure Uniforme des Dashboards
+
+Chaque dashboard suit la même structure ergonomique :
+1. **Header** - Description et périmètre
+2. **Rangée KPI** - 5 à 8 tuiles métriques clés
+3. **Rangée évolution** - Area/bar charts pour tendances
+4. **Rangée Top N** - Horizontal bars pour top agents, règles, etc.
+5. **Rangée table de travail** - Data table pour analyste
 
 ## Où sont stockés les dashboards ?
 
