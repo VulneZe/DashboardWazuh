@@ -1,16 +1,43 @@
 # Wazuh Linux SOC Dashboards for OpenSearch Dashboards
 
-Pack de 6 dashboards OpenSearch Dashboards prêts à importer pour un SOC Linux sous Wazuh :
+Pack de 7 dashboards OpenSearch Dashboards prêts à importer pour un SOC Linux sous Wazuh :
 
 **Dashboards Linux spécifiques :**
-- Linux Security Overview
-- SSH/Auth Attacks
-- File Integrity Monitoring
+- Linux Security Overview - Vue Linux avec filtre entreprise (rule.level >= 7)
+- SSH/Auth Attacks - Authentification SSH et attaques
+- File Integrity Monitoring - Surveillance des fichiers
 
 **Dashboards SOC généraux :**
-- SOC Overview
-- Threat Detection
-- Compliance Monitoring
+- Asset Inventory - Inventaire des actifs à surveiller (machines, OS, niveau de risque)
+- SOC Triage - Triage et priorisation des alertes selon niveau de gravité
+- Threat Detection - Détection de menaces (malware, rootkits, exploits)
+- Compliance Monitoring - Conformité et violations de politiques
+
+## Où sont stockés les dashboards ?
+
+Les dashboards sont stockés dans **OpenSearch Dashboards** (l'interface web de Wazuh) :
+
+1. **Dans l'index OpenSearch** : Les dashboards sont sauvegardés dans l'index `.kibana` ou `.opensearch` de votre cluster OpenSearch
+2. **Via l'interface web** : Accessible via **Management > Saved Objects** dans OpenSearch Dashboards
+3. **Export/Import** : Vous pouvez exporter vos dashboards en NDJSON depuis l'interface web
+
+**Pour voir vos dashboards importés :**
+- Connectez-vous à OpenSearch Dashboards
+- Allez dans **Dashboards** dans le menu de gauche
+- Vos dashboards apparaissent dans la liste
+
+## Carte géographique des connexions
+
+**Pourquoi elle n'est pas incluse :**
+- Wazuh n'inclut pas les données géographiques (GeoIP) par défaut
+- Nécessite l'activation du module GeoIP dans la configuration Wazuh
+- Requiert une base de données GeoIP (MaxMind)
+
+**Pour l'activer :**
+1. Télécharger la base GeoIP MaxMind
+2. Configurer `/var/ossec/etc/ossec.conf` avec `<geoip>`
+3. Redémarrer Wazuh
+4. Les champs `GeoIP.location` et `GeoIP.country_code` seront disponibles dans les alertes
 
 ## Identifiants de connexion requis
 
