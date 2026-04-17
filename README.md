@@ -2,21 +2,27 @@
 
 Pack de dashboards OpenSearch Dashboards basés sur l'architecture SOC professionnelle Wazuh 4.14.
 
-## Architecture à 3 Niveaux
+## Pack Professionnel SOC (8 Dashboards)
 
 **Niveau 1 - Pack de Pilotage SOC** (tableaux d'ouverture quotidiens)
-- **SOC Executive Overview** - Vue d'ensemble avec KPIs critiques, évolution, top agents, MITRE tactics, severity distribution, incident queue
-- **SOC Active Incidents** - Détection et corrélation : règles actives, IP agressives, comptes ciblés, MITRE heatmap, timeline incidents
-- **SOC Telemetry Health** - État des agents et fiabilité télémétrie : Active/Disconnected/Pending, OS distribution, agents silencieux
+- **SOC 01 - Executive Overview** - Vue d'ensemble avec KPIs critiques, évolution, top agents, MITRE tactics, severity distribution, incident queue
+- **SOC 02 - Threat Detection / Active Incidents** - Détection et corrélation : règles actives, IP agressives, comptes ciblés, MITRE heatmap, timeline incidents
+- **SOC 06 - Agent Health & Telemetry Reliability** - État des agents et fiabilité télémétrie : Active/Disconnected/Pending, versions agents, agents silencieux
 
 **Niveau 2 - Pack d'Investigation** (investigation ciblée)
-- **Linux Security Overview** - Vue Linux avec filtre entreprise (rule.level >= 7)
-- **SSH/Auth Attacks** - Authentification SSH et attaques
-- **File Integrity Monitoring** - Surveillance des fichiers
-- **Asset Inventory** - Inventaire des actifs (machines, OS, niveau de risque)
+- **SOC 03 - Authentication & Privilege Abuse** - Bruteforce, password spraying, comptes anormaux, élévation de privilèges
+- **SOC 04 - Endpoint Integrity / FIM Critical Changes** - Changements sensibles, webroots, points de persistence
+- **SOC 05 - Vulnerability Prioritization** - CVE prioritization, hosts exposés, packages critiques, remediation priority
+- **SOC 07 - Windows Security Monitoring** - Logons, privilèges, process, services, RDP, PowerShell
+- **SOC 08 - Linux Security Monitoring** - SSH, sudo, root, cron/systemd, téléchargements suspects
 
-**Niveau 3 - Déclinaisons par environnement** (à créer selon besoin)
-- ENV-PROD, ENV-DMZ, ENV-AD-Windows, ENV-Linux-Servers, ENV-Workstations
+## Index Patterns Utilisés
+
+Le bundle utilise 4 index patterns Wazuh :
+- `wazuh-alerts-*` - Alertes corrélées
+- `wazuh-monitoring-*` - Statut des agents
+- `wazuh-states-vulnerabilities-*` - État des vulnérabilités
+- `wazuh-statistics-*` - Métriques du serveur
 
 ## Charte Visuelle Professionnelle
 
