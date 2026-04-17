@@ -13,7 +13,6 @@ FILE="$1"
 : "${OSD_PASS:?OSD_PASS is required}"
 
 OVERWRITE="${OVERWRITE:-true}"
-SECURITY_TENANT="${SECURITY_TENANT:-global}"
 CURL_INSECURE="${CURL_INSECURE:-false}"
 
 CURL_TLS_ARGS=()
@@ -21,13 +20,17 @@ if [ "$CURL_INSECURE" = "true" ]; then
   CURL_TLS_ARGS+=(--insecure)
 fi
 
-echo "Import de ${FILE} vers ${OSD_URL} (tenant=${SECURITY_TENANT}, overwrite=${OVERWRITE})"
+CURL_HEADERS=(-H "osd-xsrf: true")
+if [ -n "${SECURITY_TENANT:-}" ]; then
+  CURL_HEADERS+=(-H "securitytenant: ${SECURITY_TENANT}")
+fi
+
+echo "Import de ${FILE} vers ${OSD_URL} (tenant=${SECURITY_TENANT:-<none>}, overwrite=${OVERWRITE})"
 
 HTTP_CODE="$(
   curl -sS "${CURL_TLS_ARGS[@]}" \
     -u "${OSD_USER}:${OSD_PASS}" \
-    -H "osd-xsrf: true" \
-    -H "securitytenant: ${SECURITY_TENANT}" \
+    "${CURL_HEADERS[@]}" \
     -o /tmp/osd-import-response.json \
     -w "%{http_code}" \
     -X POST \
