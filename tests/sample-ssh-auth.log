@@ -1,0 +1,10 @@
+Apr 17 10:41:01 lab-linux sshd[2123]: Failed password for invalid user backup from 203.0.113.10 port 54512 ssh2
+Apr 17 10:41:07 lab-linux sshd[2123]: Failed password for invalid user backup from 203.0.113.10 port 54512 ssh2
+Apr 17 10:41:13 lab-linux sshd[2123]: Failed password for invalid user backup from 203.0.113.10 port 54512 ssh2
+Apr 17 10:41:19 lab-linux sshd[2123]: Failed password for invalid user backup from 203.0.113.10 port 54512 ssh2
+Apr 17 10:41:25 lab-linux sshd[2123]: Failed password for invalid user backup from 203.0.113.10 port 54512 ssh2
+Apr 17 10:41:31 lab-linux sshd[2123]: Failed password for invalid user backup from 203.0.113.10 port 54512 ssh2
+Apr 17 10:41:37 lab-linux sshd[2123]: Failed password for invalid user backup from 203.0.113.10 port 54512 ssh2
+Apr 17 10:41:43 lab-linux sshd[2123]: Failed password for invalid user backup from 203.0.113.10 port 54512 ssh2
+Apr 17 10:42:11 lab-linux sshd[2211]: Accepted publickey for admin from 198.51.100.23 port 52344 ssh2: RSA SHA256:EXAMPLEKEY
+Apr 17 10:43:20 lab-linux sshd[2241]: error: maximum authentication attempts exceeded for root from 203.0.113.10 port 54521 ssh2 [preauth]

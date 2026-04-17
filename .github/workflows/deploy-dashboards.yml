@@ -1,0 +1,30 @@
+name: Deploy Wazuh Linux SOC Dashboards
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "dashboards/**"
+      - "scripts/**"
+      - ".github/workflows/deploy-dashboards.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      OSD_URL: ${{ secrets.OSD_URL }}
+      OSD_USER: ${{ secrets.OSD_USER }}
+      OSD_PASS: ${{ secrets.OSD_PASS }}
+      SECURITY_TENANT: ${{ secrets.OSD_SECURITY_TENANT }}
+      OVERWRITE: "true"
+      CURL_INSECURE: "false"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+
+      - name: Deploy dashboards
+        run: ./scripts/import-all.sh
