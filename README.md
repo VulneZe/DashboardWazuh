@@ -91,15 +91,22 @@ export CURL_INSECURE="true"               # Si certificat SSL auto-signé
 
 ## Utilisation rapide
 
-```bash
-export OSD_URL="https://dashboards.example.org"
-export OSD_USER="admin"
-export OSD_PASS="change-me"
-export SECURITY_TENANT="global"
-export OVERWRITE="true"
+⚠️ **IMPORTANT : Vous devez définir les variables d'environnement AVANT de lancer le script**
 
+```bash
+# Définir les variables d'environnement (obligatoire)
+export OSD_URL="https://172.20.10.4:443"  # URL de votre OpenSearch Dashboards
+export OSD_USER="admin"                   # Utilisateur avec droits admin
+export OSD_PASS="votre_mot_de_passe"      # Mot de passe
+export SECURITY_TENANT=""                 # Vide si pas de multi-tenancy
+export OVERWRITE="true"                   # Écraser les dashboards existants
+export CURL_INSECURE="true"               # Si certificat SSL auto-signé
+
+# Lancer l'import
 ./scripts/import-all.sh
 ```
+
+**Si vous obtenez l'erreur "OSD_URL is required"**, c'est que vous n'avez pas défini les variables d'environnement. Copiez et collez les commandes `export` ci-dessus avant de lancer le script.
 
 ## Import unitaire
 
