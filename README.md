@@ -1,10 +1,49 @@
 # Wazuh Linux SOC Dashboards for OpenSearch Dashboards
 
-Pack de 3 dashboards OpenSearch Dashboards prêts à importer pour un SOC Linux sous Wazuh :
+Pack de 6 dashboards OpenSearch Dashboards prêts à importer pour un SOC Linux sous Wazuh :
 
+**Dashboards Linux spécifiques :**
 - Linux Security Overview
 - SSH/Auth Attacks
 - File Integrity Monitoring
+
+**Dashboards SOC généraux :**
+- SOC Overview
+- Threat Detection
+- Compliance Monitoring
+
+## Identifiants de connexion requis
+
+Pour utiliser les scripts d'import, vous devez fournir les identifiants de connexion à votre instance OpenSearch Dashboards.
+
+### Où trouver les identifiants ?
+
+**Méthode 1 - Via l'interface Wazuh :**
+1. Connectez-vous à l'interface web Wazuh (généralement `https://<wazuh-server>/`)
+2. Les identifiants sont les mêmes que ceux utilisés pour vous connecter à Wazuh
+3. L'utilisateur doit avoir les droits d'administration pour importer des dashboards
+
+**Méthode 2 - Via OpenSearch Dashboards :**
+1. Connectez-vous directement à OpenSearch Dashboards (généralement `https://<wazuh-server>/app/wazuh`)
+2. Utilisez le même utilisateur/mot de passe que pour Wazuh
+
+**Méthode 3 - Via le serveur Wazuh :**
+```bash
+# Sur le serveur Wazuh
+cat /var/ossec/api/configuration/api.yaml
+# Ou vérifiez les fichiers de configuration OpenSearch
+cat /etc/opensearch/opensearch-security/internal_users.yml
+```
+
+**Variables d'environnement requises :**
+```bash
+export OSD_URL="https://172.20.10.4:443"  # URL de votre OpenSearch Dashboards
+export OSD_USER="admin"                   # Utilisateur avec droits admin
+export OSD_PASS="votre_mot_de_passe"      # Mot de passe
+export SECURITY_TENANT=""                 # Vide si pas de multi-tenancy
+export OVERWRITE="true"                   # Écraser les dashboards existants
+export CURL_INSECURE="true"               # Si certificat SSL auto-signé
+```
 
 ## Prérequis
 
